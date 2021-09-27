@@ -1,0 +1,110 @@
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        gap: 5px 5px;
+        grid-auto-flow: row;
+        grid-template-areas:
+          "Display Display Display Display"
+          "seven eight nine plus"
+          "four five six minus"
+          "one two three multiplied"
+          "zerro equals C divided";
+          background-color: black;
+          color: black;
+          height: 80vh;
+          width: 65vh;
+          border: black solid 5px;
+      }
+
+      .display * {
+          margin: 5px;
+      }
+      
+      .Display { 
+          grid-area: Display; 
+          background-color: gray;
+          color: white;
+        }
+      
+      .seven { 
+          grid-area: seven; 
+          background-color: white;
+        }
+      
+      .eight { 
+          grid-area: eight; 
+          background-color: white;
+        }
+      
+      .nine { 
+          grid-area: nine; 
+          background-color: white;
+        }
+      
+      .plus { 
+          grid-area: plus; 
+          background-color: greenyellow;
+        }
+      
+      .minus { 
+          grid-area: minus;
+          background-color: red;
+        }
+      
+      .six { 
+          grid-area: six; 
+          background-color: white;
+        }
+      
+      .five { 
+          grid-area: five; 
+          background-color: white;
+        }
+      
+      .four { 
+          grid-area: four; 
+          background-color: white;
+        }
+      
+      .one { 
+          grid-area: one; 
+          background-color: white;
+        }
+      
+      .two { 
+          grid-area: two; 
+          background-color: white;
+        }
+      
+      .three { 
+          grid-area: three; 
+          background-color: white;
+        }
+      
+      .zerro { 
+          grid-area: zerro; 
+          background-color: white;
+        }
+
+      .equals {
+          grid-area: equals;
+          background-color: white;
+      }
+      
+      .C { 
+          grid-area: C; 
+          background-color: white;
+        }
+      
+      .divided { 
+          grid-area: divided; 
+          background-color: orange;
+        }
+      
+      .multiplied { 
+          grid-area: multiplied; 
+          background-color: cyan;
+        }
+      
+  

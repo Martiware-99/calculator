@@ -1,15 +1,3 @@
-let container = document.createElement("div")
-container.className = "container"
-document.body.appendChild(container)
-
-let display = document.createElement("div")
-display.className = "Display"
-container.appendChild(display)
-
-let numDisplay = document.createElement("p")
-numDisplay.className = "numDisplay"
-display.appendChild(numDisplay)
-
 let calculatorButtonPropreties = [
 { nameOfTheClass : "one",
   value : 1
@@ -53,45 +41,58 @@ let calculatorButtonPropreties = [
 { nameOfTheClass : "multiplied",
   value : "*"
 },
+{ nameOfTheClass : "C",
+  value : "C",
+  clear : true,
+},
+{ nameOfTheClass : "equals",
+  value : "=",
+  equal : true,
+},
+{ nameOfTheClass : "Display",
+  value : "",
+  displayValue : true,
+},
 ]
 
 function computeResult(numDisplay){
     return Function('return ' + numDisplay)()
 }
 
+let container = document.createElement("div")
+container.className = "container"
+document.body.appendChild(container)
+
 for(let elem of calculatorButtonPropreties){
     let calculatorButton = document.createElement("div")
     calculatorButton.className = elem.nameOfTheClass
     container.appendChild(calculatorButton)
     calculatorButton.innerText = elem.value
-    calculatorButton.addEventListener('click', e=> {
+    if (elem.displayValue === true) {
+        let numDisplay = document.createElement("p")
+        numDisplay.className = "numDisplay"
+        document.querySelector(".Display").appendChild(numDisplay)
+    } else if (elem.clear === true){
+        calculatorButton.addEventListener('click', e => {
+            while (document.querySelector(".numDisplay").firstChild){
+                document.querySelector(".numDisplay").removeChild(document.querySelector(".numDisplay").firstChild)
+            }
+        })
+    } else if (elem.equal === true){
+        calculatorButton.addEventListener('click', e => {
+            let finalResult = computeResult(document.querySelector(".numDisplay").innerText)
+            let value = document.createTextNode(finalResult)
+            
+            while (document.querySelector(".numDisplay").firstChild){
+                document.querySelector(".numDisplay").removeChild(document.querySelector(".numDisplay").firstChild)
+            }  
+            document.querySelector(".numDisplay").appendChild(value)
+        })    
+    }  else {    
+        calculatorButton.addEventListener('click', e=> {
         let num = document.createTextNode(elem.value)
-        numDisplay.appendChild(num)
+        document.querySelector(".numDisplay").appendChild(num)
     })
 }
+}
 
-let C = document.createElement("div")
-C.className = "C"
-container.appendChild(C)
-C.innerText = "C"
-C.addEventListener('click', e => {
-    while (numDisplay.firstChild){
-        numDisplay.removeChild(numDisplay.firstChild)
-      }
-})
-
-let equals = document.createElement("div")
-equals.className = "equals"
-container.appendChild(equals)
-equals.innerText = "="
-equals.addEventListener('click', e => {
-    let finalResult = computeResult(numDisplay.innerText)
-    let value = document.createTextNode(finalResult)
-
-    while (numDisplay.firstChild){
-        numDisplay.removeChild(numDisplay.firstChild)
-      }  
-    
-    console.log(finalResult)  
-    numDisplay.appendChild(value)
-})    

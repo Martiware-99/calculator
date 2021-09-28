@@ -1,128 +1,97 @@
-let display = document.querySelector(".Display")
-let numDisplay = document.querySelector(".numDisplay")
+let container = document.createElement("div")
+container.className = "container"
+document.body.appendChild(container)
+
+let display = document.createElement("div")
+display.className = "Display"
+container.appendChild(display)
+
+let numDisplay = document.createElement("p")
+numDisplay.className = "numDisplay"
+display.appendChild(numDisplay)
+
+let calculatorButtonPropreties = [
+{ nameOfTheClass : "one",
+  value : 1
+},
+{ nameOfTheClass : "two",
+  value : 2
+},
+{ nameOfTheClass : "three",
+  value : 3
+},
+{ nameOfTheClass : "four",
+  value : 4
+},
+{ nameOfTheClass : "five",
+  value : 5
+},
+{ nameOfTheClass : "six",
+  value : 6
+},
+{ nameOfTheClass : "seven",
+  value : 7
+},
+{ nameOfTheClass : "eight",
+  value : 8
+},
+{ nameOfTheClass : "nine",
+  value : 9
+},
+{ nameOfTheClass : "zerro",
+  value : 0
+},
+{ nameOfTheClass : "plus",
+  value : "+"
+},
+{ nameOfTheClass : "minus",
+  value : "-"
+},
+{ nameOfTheClass : "divided",
+  value : "/"
+},
+{ nameOfTheClass : "multiplied",
+  value : "*"
+},
+]
+
 function computeResult(numDisplay){
     return Function('return ' + numDisplay)()
-  }
+}
 
-let one = document.querySelector(".one")
-one.addEventListener('click', e => {
-    let numVal = 1
-    let num = document.createTextNode(numVal)
-    numDisplay.appendChild(num)
-})
+for(let elem of calculatorButtonPropreties){
+    let calculatorButton = document.createElement("div")
+    calculatorButton.className = elem.nameOfTheClass
+    container.appendChild(calculatorButton)
+    calculatorButton.innerText = elem.value
+    calculatorButton.addEventListener('click', e=> {
+        let num = document.createTextNode(elem.value)
+        numDisplay.appendChild(num)
+    })
+}
 
-let two = document.querySelector(".two")
-two.addEventListener('click', e => {
-    let numVal = 2
-    let num = document.createTextNode(numVal)
-    numDisplay.appendChild(num)
-})
-
-let three = document.querySelector(".three")
-three.addEventListener('click', e => {
-    let numVal = 3
-    let num = document.createTextNode(numVal)
-    numDisplay.appendChild(num)
-})
-
-let four = document.querySelector(".four")
-four.addEventListener('click', e => {
-    let numVal = 4
-    let num = document.createTextNode(numVal)
-    numDisplay.appendChild(num)
-})
-
-let five = document.querySelector(".five")
-five.addEventListener('click', e => {
-    let numVal = 5
-    let num = document.createTextNode(numVal)
-    numDisplay.appendChild(num)
-})
-
-let six = document.querySelector(".six")
-six.addEventListener('click', e => {
-    let numVal = 6
-    let num = document.createTextNode(numVal)
-    numDisplay.appendChild(num)
-})
-
-let seven = document.querySelector(".seven")
-seven.addEventListener('click', e => {
-    let numVal = 7
-    let num = document.createTextNode(numVal)
-    numDisplay.appendChild(num)
-})
-
-let eight = document.querySelector(".eight")
-eight.addEventListener('click', e => {
-    let numVal = 8
-    let num = document.createTextNode(numVal)
-    numDisplay.appendChild(num)
-})
-
-let nine = document.querySelector(".nine")
-nine.addEventListener('click', e => {
-    let numVal = 9
-    let num = document.createTextNode(numVal)
-    numDisplay.appendChild(num)
-})
-
-let zerro = document.querySelector(".zerro")
-zerro.addEventListener('click', e => {
-    let numVal = 0
-    let num = document.createTextNode(numVal)
-    numDisplay.appendChild(num)
-})
-
-
-
-let plus = document.querySelector(".plus")
-plus.addEventListener('click', e => {
-    let signVal = "+"
-    let sign = document.createTextNode(signVal)
-    numDisplay.appendChild(sign)
-})
-
-let minus = document.querySelector(".minus")
-minus.addEventListener('click', e => {
-    let signVal = "-"
-    let sign = document.createTextNode(signVal)
-    numDisplay.appendChild(sign)
-})
-
-let C = document.querySelector(".C")
+let C = document.createElement("div")
+C.className = "C"
+container.appendChild(C)
+C.innerText = "C"
 C.addEventListener('click', e => {
     while (numDisplay.firstChild){
         numDisplay.removeChild(numDisplay.firstChild)
       }
 })
 
-  
-let equals = document.querySelector(".equals")
+let equals = document.createElement("div")
+equals.className = "equals"
+container.appendChild(equals)
+equals.innerText = "="
 equals.addEventListener('click', e => {
     let finalResult = computeResult(numDisplay.innerText)
     let value = document.createTextNode(finalResult)
 
     while (numDisplay.firstChild){
         numDisplay.removeChild(numDisplay.firstChild)
-      }
+      }  
     
-    console.log(finalResult)
+    console.log(finalResult)  
     numDisplay.appendChild(value)
-})
-
-
-let divided = document.querySelector(".divided")
-divided.addEventListener('click', e => {
-    let signVal = "/"
-    let sign = document.createTextNode(signVal)
-    numDisplay.appendChild(sign)
-})
-
-let multiplied = document.querySelector(".multiplied")
-multiplied.addEventListener('click', e => {
-    let signVal = "*"
-    let sign = document.createTextNode(signVal)
-    numDisplay.appendChild(sign)
-})
-
+})    
